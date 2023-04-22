@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<style>
+    body {
+    margin: 0;
+    height: 100vh;
+    //cursor: none;
+}
+
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+    border-radius: 50%;
+    position: absolute;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+    animation: cursorAnim .5s infinite alternate;
+    pointer-events: none;
+}
+
+.cursor::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border: 8px solid gray;
+    border-radius: 50%;
+    opacity: .5;
+    top: -8px;
+    left: -8px;
+    animation: cursorAnim2 .5s infinite alternate;
+}
+
+@keyframes cursorAnim {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(.7);
+    }
+}
+
+@keyframes cursorAnim2 {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(.4);
+    }
+}
+
+@keyframes cursorAnim3 {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(3);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+.expand {
+    animation: cursorAnim3 .5s forwards;
+    border: 1px solid red;
+}
+
+p {
+    color: white;
+    font-family: 'arial';
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.4em;
+    
+    a {
+    color: teal;
+    }
+}
+</style>
+<body>
+    <div class="container">
+        <img style="margin-left: 500px; margin-top: 70px;"  src="/Capturet.PNG" alt="Logo">
+        <h3 style="margin-left: 400px;">Login to labeebs app</h3>
+        <h6 style="margin-left: 400px;">We'll never share your email with anyone.</h6>
+
+    </div>
+    
+    <form>
+        <div class="mb-3">
+            <label style="margin-left: 415px; position: relative; top: 10px;"for="exampleInputEmail1" class="form-label">Email address</label>
+            <input style="width: 500px; margin-top: 10px; margin-left: 415px; color: whitesmoke;" type="email" class="form-control bg-secondary" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label style="margin-left: 415px;" for="exampleInputPassword1" class="form-label">Password</label>
+            <input style="width: 500px; margin-left: 415px; color: whitesmoke;" type="password" class="form-control bg-secondary " id="exampleInputPassword1">
+        </div>
+        
+        <button style="margin-left: 415px;" type="submit" class="btn btn-primary">Submit</button>
+        <button style="margin-left: 1px;" type="button" class="btn btn-secondary disabled">Cencel</button>
+    </form>
+
+    <div class="cursor"></div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    
+</body>
+<script>
+            const cursor = document.querySelector('.cursor');
+
+                document.addEventListener('mousemove', e => {
+                    cursor.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;")
+                })
+
+                document.addEventListener('click', () => {
+                    cursor.classList.add("expand");
+
+                    setTimeout(() => {
+                        cursor.classList.remove("expand");
+                    }, 500)
+                })
+</script>
+</html>
